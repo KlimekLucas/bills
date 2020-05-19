@@ -1,5 +1,6 @@
 package com.bills.bills.Controller;
 
+import com.bills.bills.Model.DTO.ItemDTO;
 import com.bills.bills.Model.Item;
 import com.bills.bills.Service.ItemService;
 import org.slf4j.Logger;
@@ -16,7 +17,7 @@ import java.util.List;
 public class ItemController {
 
     Logger log = LoggerFactory.getLogger(this.getClass());
-    private ItemService itemService;
+    private final ItemService itemService;
 
     @Autowired
     public ItemController(ItemService itemService) {
@@ -40,9 +41,9 @@ public class ItemController {
     }
 
     @PostMapping(value = "new", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void AddNewItem(@RequestBody Item item) {
+    public void AddNewItem(@RequestBody ItemDTO itemDTO) {
         log.info("AddNewItem -> entered");
-        itemService.save(item);
+        itemService.save(itemDTO);
         log.info("AddNewItem -> exiting");
     }
 

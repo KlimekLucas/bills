@@ -11,12 +11,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
+
 @RestController
+@CrossOrigin
 @RequestMapping("categories")
 public class CategoryController {
 
     Logger log = LoggerFactory.getLogger(this.getClass());
-    private CategoryService categoryService;
+    private final CategoryService categoryService;
 
     @Autowired
     public CategoryController(CategoryService categoryService) {
@@ -39,11 +42,13 @@ public class CategoryController {
         return categories;
     }
 
-    @PostMapping(value = "new", consumes = MediaType.APPLICATION_JSON_VALUE)
+
+    @RequestMapping(value = "new", method = POST)
     public void AddNewCategory(@RequestBody Category category) {
         log.info("AddNewCategory -> entered");
         categoryService.save(category);
     }
+
 
     @RequestMapping("delete/{categoryId}")
     public void DeleteCategory(@PathVariable("categoryId") Integer categoryId, Model model) {
@@ -51,6 +56,7 @@ public class CategoryController {
         Category category = categoryService.getCategory(categoryId);
         categoryService.delete(category);
     }
+
 
 // TODO
 //    @PutMapping(value = "/{categoryId}",

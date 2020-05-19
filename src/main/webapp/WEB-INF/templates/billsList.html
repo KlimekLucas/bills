@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico"/>
+
+    <title>Rachunki</title>
+
+    <link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+</head>
+
+<body>
+<div>
+    <header></header>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#" th:text="${username}">Project name</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="index">Strona Główma</a></li>
+                    <li><a href="../cat/all">Kategorie</a></li>
+                    <li><a href="../bil/all">Rachunki</a></li>
+                    <li><a href="../ite/all">Artykuły</a></li>
+                    <li><a href="../sho/all">Sklepy</a></li>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <aside><h2>Lista Rachunków</h2></aside>
+    <article class="jumbotron">
+        <main>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Data</th>
+                    <th scope="col">Sklep</th>
+                    <th scope="col">Lista Artykułów</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="bill , iterationInfo : ${billsList}">
+                    <td th:text="${bill.date}"/>
+                    <td th:text="${bill.shop}"/>
+                    <td th:text="${bill.item}"/>
+                    <td><a th:href="@{/bil/delete/{billid} (billid=${bill.id})}" th:text="usuń"/></td>
+                    <td><a class="nav-link" href="#">edytuj</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </main>
+        <a href="new" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Dodaj Rachunek</a>
+    </article>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="../static/js/bootstrap.js" th:href="@{/js/bootstrap.js}"></script>
+</body>
+</html>

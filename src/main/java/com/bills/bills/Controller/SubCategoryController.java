@@ -18,7 +18,7 @@ public class SubCategoryController {
 
 
     Logger log = LoggerFactory.getLogger(this.getClass());
-    private SubCategoryService subCategoryService;
+    private final SubCategoryService subCategoryService;
 
     @Autowired
     public SubCategoryController(SubCategoryService subCategoryService) {

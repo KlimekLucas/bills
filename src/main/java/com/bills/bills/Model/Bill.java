@@ -3,18 +3,19 @@ package com.bills.bills.Model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "bill")
-public class Bill {
+public class Bill implements Serializable {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "item_Id")
-    @JsonProperty("itemId")
+    @Column(name = "bill_Id")
+    @JsonProperty("billId")
     private Integer id;
 
     @Column(name = "DATE")
@@ -26,7 +27,7 @@ public class Bill {
     private Shop shop;
 
     @OneToMany
-    @JsonProperty("ITEM")
+    @JsonProperty("ITEMS_LIST")
     private List<Item> item;
 
     public Bill() {

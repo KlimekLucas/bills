@@ -17,7 +17,7 @@ public class BillController {
 
 
     Logger log = LoggerFactory.getLogger(this.getClass());
-    private com.bills.bills.Service.BillService billService;
+    private final com.bills.bills.Service.BillService billService;
 
     @Autowired
     public BillController(BillService billService) {

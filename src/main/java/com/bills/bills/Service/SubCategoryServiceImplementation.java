@@ -14,7 +14,7 @@ import java.util.Optional;
 public class SubCategoryServiceImplementation implements SubCategoryService {
 
     Logger log = LoggerFactory.getLogger(this.getClass());
-    private SubCategoryRepository subCategoryRepository;
+    private final SubCategoryRepository subCategoryRepository;
 
     @Autowired
     public SubCategoryServiceImplementation(SubCategoryRepository subCategoryRepository) {

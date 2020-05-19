@@ -3,6 +3,7 @@ package com.bills.bills.Model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,7 @@ public class Category implements Serializable {
     @JsonProperty("categoryId")
     private Integer id;
 
-
+    @NotEmpty(message = "pole nie może być puste")
     @Column(name = "NAME")
     @JsonProperty("NAME")
     private String name;
@@ -60,4 +61,6 @@ public class Category implements Serializable {
     public void removeSubCategory(SubCategory subCategory) {
         subCategories.add(subCategory);
     }
+
 }
+

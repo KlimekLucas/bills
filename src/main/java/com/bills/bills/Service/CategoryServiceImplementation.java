@@ -28,6 +28,13 @@ public class CategoryServiceImplementation implements CategoryService {
         log.info("getCategory -> getting data from db ");
         Optional<Category> category = categoryRepository.findById(categoryId);
         return category.orElse(defaultCategory());
+
+    }
+
+    @Override
+    public Category findByName(String name) {
+        Category category = categoryRepository.findByName(name);
+        return category;
     }
 
 
@@ -39,9 +46,21 @@ public class CategoryServiceImplementation implements CategoryService {
     }
 
 
-    public void save(Category category) {
-        log.info("save -> entering");
-        categoryRepository.save(category);
+    public void save(Category NewCategory) {
+        String NewCategoryName = NewCategory.getName();
+        log.info("save NewCategory -> entering");
+        boolean exists = false;
+        List<Category> categories = getCategories();
+        for (Category category : categories) {
+            if (category.getName().equals(NewCategoryName)) {
+                exists = true;
+                log.error("save NewCategory -> this category already exist in database");
+            }
+        }
+        if (exists == false) {
+            categoryRepository.save(NewCategory);
+            log.info("save NewCategory -> saving");
+        }
     }
 
     @Override
@@ -49,6 +68,7 @@ public class CategoryServiceImplementation implements CategoryService {
         log.info("deleting");
         categoryRepository.delete(category);
     }
+
 
     private Category defaultCategory() {
         log.info("defaultCategory -> entering");

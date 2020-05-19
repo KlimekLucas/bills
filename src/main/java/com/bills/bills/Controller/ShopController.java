@@ -12,12 +12,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("shops")
 public class ShopController {
 
 
     Logger log = LoggerFactory.getLogger(this.getClass());
-    private ShopService shopService;
+    private final ShopService shopService;
 
     @Autowired
     public ShopController(ShopService shopService) {

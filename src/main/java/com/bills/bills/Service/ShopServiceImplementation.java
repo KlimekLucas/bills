@@ -14,7 +14,7 @@ import java.util.Optional;
 public class ShopServiceImplementation implements ShopService {
 
     Logger log = LoggerFactory.getLogger(this.getClass());
-    private ShopRepository shopRepository;
+    private final ShopRepository shopRepository;
 
     @Autowired
     public ShopServiceImplementation(ShopRepository shopRepository) {

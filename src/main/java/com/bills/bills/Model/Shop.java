@@ -3,10 +3,11 @@ package com.bills.bills.Model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "shop")
-public class Shop {
+public class Shop implements Serializable {
 
 
     @Id
@@ -25,7 +26,7 @@ public class Shop {
 
     @Column(name = "Address")
     @JsonProperty("Address")
-    private String Address;
+    private String address;
 
 
     public Shop() {
@@ -57,10 +58,10 @@ public class Shop {
     }
 
     public String getAddress() {
-        return Address;
+        return address;
     }
 
     public void setAddress(String address) {
-        Address = address;
+        this.address = address;
     }
 }

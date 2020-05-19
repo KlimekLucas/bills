@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
+    <link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+</head>
+<body>
+
+<div id="top">
+    <header id="NAGLOWEK"></header>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#" th:text="${username}">Project name</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="index">Strona Główma</a></li>
+                    <li><a href="../cat/all">Kategorie</a></li>
+                    <li><a href="../bills/all">Rachunki</a></li>
+                    <li><a href="../sho/all">Sklepy</a></li>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <aside id="INFORMACJE"><h2>Czy na pewno chcesz zamienić poniższą kategorię ??</h2> </aside>
+    <article id="TRESC">
+
+        <table th:object="${category}">
+            <tr>
+                <td>Id</td>
+                <td th:text="*{id}"/>
+            </tr>
+            <tr>
+                <td>Imie</td>
+                <td th:text="*{name}"/>
+            </tr>
+            <td>
+                <a th:href="@{/cat/edit/{categoryID}/edited (categoryID=${category.id})}" th:text="nadpisz"/>
+            </td>
+
+            </form>
+            </td>
+        </table>
+
+    </article>
+
+    <footer id="STOPKA">Stopka serwisu</footer>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="../static/js/bootstrap.js" th:href="@{/js/bootstrap.js}"></script>
+</body>
+</html>

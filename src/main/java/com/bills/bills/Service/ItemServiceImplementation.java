@@ -1,6 +1,10 @@
 package com.bills.bills.Service;
 
+import com.bills.bills.Exceptions.NotFoundException;
+import com.bills.bills.Model.Category;
+import com.bills.bills.Model.DTO.ItemDTO;
 import com.bills.bills.Model.Item;
+import com.bills.bills.Repository.CategoryRepository;
 import com.bills.bills.Repository.ItemRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,10 +19,12 @@ public class ItemServiceImplementation implements ItemService {
 
     Logger log = LoggerFactory.getLogger(this.getClass());
     ItemRepository itemRepository;
+    CategoryRepository categoryRepository;
 
     @Autowired
-    public ItemServiceImplementation(ItemRepository itemRepository) {
+    public ItemServiceImplementation(ItemRepository itemRepository, CategoryRepository categoryRepository) {
         this.itemRepository = itemRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     @Override
@@ -43,8 +49,16 @@ public class ItemServiceImplementation implements ItemService {
     }
 
     @Override
-    public void save(Item item) {
+    public void save(ItemDTO itemDTO) {
         log.info("saveItem -> enter");
+        Item item = new Item();
+        item.setName(itemDTO.getName());
+        item.setBrand(itemDTO.getBrand());
+        item.setInfo(itemDTO.getInfo());
+        item.setPrice(itemDTO.getPrice());
+        log.info("saveItem -> getCategoryfromRepository");
+        Optional<Category> category = categoryRepository.findById(Integer.valueOf(itemDTO.getCategory()));
+        item.setCategory(category.orElseThrow(() -> new NotFoundException("nie ma takiej roli")));
         itemRepository.save(item);
         log.info("saveItem -> item Saved");
     }
