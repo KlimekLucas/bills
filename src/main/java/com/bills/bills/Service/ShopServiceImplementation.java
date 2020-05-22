@@ -38,7 +38,7 @@ public class ShopServiceImplementation implements ShopService {
     private Shop defaultShop() {
         log.info("defaultCategory -> entering");
         Shop defaultShop = new Shop();
-        defaultShop.setShopId(0);
+        defaultShop.setId(0);
         defaultShop.setName("nie ma takiego sklepu");
         log.info("defaultShop -> defaultShop Object object has been created");
         return defaultShop;

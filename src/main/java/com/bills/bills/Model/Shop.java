@@ -14,7 +14,7 @@ public class Shop implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "shop_Id")
     @JsonProperty("shopId")
-    private Integer Id;
+    private Integer id;
 
     @Column(name = "NAME")
     @JsonProperty("Name")
@@ -32,13 +32,12 @@ public class Shop implements Serializable {
     public Shop() {
     }
 
-
-    public Integer getShopId() {
-        return Id;
+    public Integer getId() {
+        return id;
     }
 
-    public void setShopId(Integer shopId) {
-        this.Id = shopId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {

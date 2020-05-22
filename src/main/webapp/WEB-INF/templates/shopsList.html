@@ -54,17 +54,17 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="bill , iterationInfo : ${billsList}">
-                    <td th:text="${bill.name}"/>
-                    <td th:text="${bill.city}"/>
-                    <td th:text="${bill.address}"/>
+                <tr th:each="shop , iterationInfo : ${shopsList}">
+                    <td th:text="${shop.name}"/>
+                    <td th:text="${shop.city}"/>
+                    <td th:text="${shop.address}"/>
                     <td><a th:href="@{/sho/delete/{shopid} (shopid=${shop.id})}" th:text="usuń"/></td>
                     <td><a class="nav-link" href="#">edytuj</a></td>
                 </tr>
                 </tbody>
             </table>
         </main>
-        <a href="new" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Dodaj Rachunek</a>
+        <a href="new" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Dodaj Sklep</a>
     </article>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
