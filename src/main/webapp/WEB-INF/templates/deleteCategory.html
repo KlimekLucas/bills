@@ -31,20 +31,18 @@
             </div>
         </div>
     </nav>
-    <aside id="INFORMACJE"><h2>Czy na pewno chcesz usunąć poniższą kategorię ??</h2> </aside>
+    <aside id="INFORMACJE"><h2>Czy na pewno chcesz usunąć poniższą kategorię ??</h2></aside>
     <article id="TRESC">
 
         <table th:object="${category}">
             <tr>
-                <td>Id</td>
-                <td th:text="*{id}"/>
-            </tr>
-            <tr>
-                <td>Imie</td>
+                <td>Nazwa: </td>
                 <td th:text="*{name}"/>
             </tr>
+
             <td colspan="2">
-                <a th:href="@{/cat/delete/{categoryID}/deleted (categoryID=${category.id})}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">usuń</a>
+                <a th:href="@{/cat/delete/{categoryId}/deleted (categoryId=${category.id})}" class="btn btn-primary btn-lg active"
+                   role="button" aria-pressed="true">usuń</a>
             </td>
 
             </form>

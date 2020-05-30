@@ -32,13 +32,30 @@ public class CategoryThymeleafController {
         model.addAttribute("addedCategory", new Category());
         return "addCategory";
     }
+//
+//    @PostMapping("/categories")
+//    public String saveCategory(
+//            @Valid @ModelAttribute("addedCategory") Category newCategory, BindingResult bindingResult, ModelMap modelMap) {
+//        if (bindingResult.hasErrors()) {
+//            modelMap.addAttribute("addedClient", newCategory);
+//            return "addCategory";
+//        }
+//        categoryService.save(newCategory);
+//        return "redirect:/cat/all";
+//    }
+
+
 
     @PostMapping("/categories")
-    public String saveCategory(
-            @Valid @ModelAttribute("addedCategory") Category newCategory, BindingResult bindingResult, ModelMap modelMap) {
+    public String saveCategory(@Valid @ModelAttribute("addedCategory") Category newCategory, BindingResult bindingResult, ModelMap modelMap) {
         if (bindingResult.hasErrors()) {
-            modelMap.addAttribute("addedClient", newCategory);
-            return "addCategory";
+            if (newCategory.getId() == null) {
+                modelMap.addAttribute("addedCategory", newCategory);
+                return "addCategory";
+            } else {
+                modelMap.addAttribute("CategoryToEdit", newCategory);
+                return "editCategory";
+            }
         }
         categoryService.save(newCategory);
         return "redirect:/cat/all";
@@ -86,23 +103,33 @@ public class CategoryThymeleafController {
         return "redirect:/cat/all";
     }
 
-    @RequestMapping("edit/{categoryId}")
-    public String EditCategory(
-            @PathVariable("categoryId") Integer categoryId,
-            Model model) {
-        log.info("EditCategory -> entered");
-        Category category = categoryService.getCategory(categoryId);
-        Integer categoryID = category.getId();
-        if (category != null) {
-            log.info("EditCategory -> category Not exist");
-            model.addAttribute("category", category);
-            model.addAttribute("categoryID", categoryID);
-        }
-        return "editCategory";
-    }
+//    @RequestMapping("edit/{categoryId}")
+//    public String EditCategory(
+//            @PathVariable("categoryId") Integer categoryId,
+//            Model model) {
+//        log.info("EditCategory -> entered");
+//        Category category = categoryService.getCategory(categoryId);
+//        Integer categoryID = category.getId();
+//        if (category != null) {
+//            log.info("EditCategory -> category Not exist");
+//            model.addAttribute("category", category);
+//            model.addAttribute("categoryID", categoryID);
+//        }
+//        return "editCategory";
+//    }
+
 
     @RequestMapping("/index")
     public String index(Model model) {
         return "index";
+    }
+
+
+
+    @RequestMapping("/edit/{categoryId}")
+    public String editCategory(@PathVariable("categoryId") Integer categoryId, Model model) {
+        Category category = categoryService.getCategory(categoryId);
+        model.addAttribute("categoryToEdit", category);
+        return "editCategory";
     }
 }
