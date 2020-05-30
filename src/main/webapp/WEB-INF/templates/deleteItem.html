@@ -43,6 +43,11 @@
                 <td>Imie</td>
                 <td th:text="*{name}"/>
             </tr>
+
+            <td colspan="2">
+                <a href="../all" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Cofnij</a>
+            </td>
+
             <td colspan="2">
                 <a th:href="@{/ite/delete/{itemID}/deleted (itemID=${item.id})}" class="btn btn-primary btn-lg active"
                    role="button" aria-pressed="true">usuń</a>

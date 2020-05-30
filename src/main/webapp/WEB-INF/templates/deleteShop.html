@@ -48,6 +48,9 @@
                 <td th:text="*{address}"/>
             </tr>
             <td colspan="2">
+                <a href="../all" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Cofnij</a>
+            </td>
+            <td colspan="2">
                 <a th:href="@{/sho/delete/{shopID}/deleted (shopID=${shop.id})}" class="btn btn-primary btn-lg active"
                    role="button" aria-pressed="true">usuń</a>
             </td>

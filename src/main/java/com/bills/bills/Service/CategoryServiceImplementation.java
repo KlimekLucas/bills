@@ -27,7 +27,7 @@ public class CategoryServiceImplementation implements CategoryService {
         log.info("getCategory -> entering ");
         log.info("getCategory -> getting data from db ");
         Optional<Category> category = categoryRepository.findById(categoryId);
-        return category.orElse(defaultCategory());
+        return category.orElse(defaultCategory(categoryId));
 
     }
 
@@ -70,10 +70,10 @@ public class CategoryServiceImplementation implements CategoryService {
     }
 
 
-    private Category defaultCategory() {
+    private Category defaultCategory(Integer categoryID) {
         log.info("defaultCategory -> entering");
         Category defaultCategory = new Category();
-        defaultCategory.setId(0);
+        defaultCategory.setId(categoryID);
         defaultCategory.setName("nie ma takiej kategori");
         log.info("defaultCategory -> DefaultCategory Object object has been created");
         return defaultCategory;
