@@ -77,4 +77,11 @@ public class ShopsThymeleafController {
         shopService.delete(shop);
         return "redirect:/sho/all";
     }
+
+    @RequestMapping("/edit/{shopId}")
+    public String editCategory(@PathVariable("shopId") Integer shopId, Model model) {
+        Shop shop = shopService.getShop(shopId);
+        model.addAttribute("shopToEdit", shop);
+        return "editShop";
+    }
 }

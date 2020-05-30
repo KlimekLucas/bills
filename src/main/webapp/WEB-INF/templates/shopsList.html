@@ -59,7 +59,7 @@
                     <td th:text="${shop.city}"/>
                     <td th:text="${shop.address}"/>
                     <td><a th:href="@{/sho/delete/{shopid} (shopid=${shop.id})}" th:text="usuń"/></td>
-                    <td><a class="nav-link" href="#">edytuj</a></td>
+                    <td><a th:href="@{/sho/edit/{shopid} (shopid=${shop.id})}" th:text="edytuj"/></td>
                 </tr>
                 </tbody>
             </table>

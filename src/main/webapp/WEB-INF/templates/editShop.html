@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
+    <link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+</head>
+<body>
+
+<div id="top">
+    <header id="NAGLOWEK"></header>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#" th:text="${username}">Project name</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="index">Strona Główma</a></li>
+                    <li><a href="../../cat/all">Kategorie</a></li>
+                    <li><a href="../../bills/all">Rachunki</a></li>
+                    <li><a href="../sho/all">Sklepy</a></li>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <aside id="INFORMACJE"><h2>Czy na pewno chcesz zmienić dane poniższego sklepu ? ??</h2></aside>
+    <article id="TRESC">
+        <main>
+
+            <div id="tabelaDodawania">
+
+                <form method="post" th:action="@{/sho/shops}" th:object="${addedShop}">
+                    <table th:object="${shopToEdit}">
+                        <tr>
+                            <td>
+                                <input hidden placeholder="${shopToEdit.id}" th:field="*{id}" type="text"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>nazwa</td>
+                            <td>
+                                <input placeholder="${shopToEdit.name}" th:field="*{name}"
+                                       type="text"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>miasto</td>
+                            <td>
+                                <input placeholder="${shopToEdit.city}" th:field="*{city}"
+                                       type="text"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>adres</td>
+                            <td>
+                                <input placeholder="${shopToEdit.address}" th:field="*{address}"
+                                       type="text"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <a href="../all" class="btn btn-primary btn-lg active" role="button"
+                                   aria-pressed="true">Cofnij</a>
+                            </td>
+                            <td colspan="2">
+                                <input type="submit" value="Edytuj" class="btn btn-primary btn-lg active" role="button"
+                                       aria-pressed="true"></input>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+
+        </main>
+
+    </article>
+
+    <footer id="STOPKA">Stopka serwisu</footer>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="../static/js/bootstrap.js" th:href="@{/js/bootstrap.js}"></script>
+</body>
+</html>
